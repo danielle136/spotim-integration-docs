@@ -1,0 +1,38 @@
+# GDPR Export Process
+
+
+To conduct a GDPR export you will need the following information :
+
+1. Spot.IM User ID - Capture the user ID in the admin panel with your email
+2. Token - Once logged in to your Spot.IM account the export token will be the last text on the page
+3. Spot ID - Your Spot ID 
+
+
+Start Export:
+
+Send a POST request to:
+
+https://open-api.spot.im/gdpr/export
+
+Body
+{
+    “access_token”: “1234567890” (export token from Admin Panel),
+
+    “spot_id”: “sp_123”,
+    “user_id”: “u_123” (spotim user_id)
+}
+
+Returns
+{“id”: 1234567890}
+
+Get GDPR User Data Export Status
+GET https://open-api.spot.im/gdpr/export/status/{id}?access_token={token}&spot_id={spot-id}
+
+*Replace the information in the curly brackets with the appropriate parameters
+
+Query Params:
+access_token: “1234567890” (export token from Admin Panel)
+spot_id: “sp_123”
+
+Returns {“status”: “pending” | “completed” | “failed”}
+If status is completed, returns “link”: “download.link” as well
